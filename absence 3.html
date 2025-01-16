@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>School Days Calculator</title>
+  <script>
+    // Define non-school days for 2025 (replace with the actual list)
+    const nonSchoolDays = [
+      "Wednesday, 1 January 2025",
+      "Thursday, 2 January 2025",
+      "Friday, 3 January 2025",
+      "Saturday, 4 January 2025",
+      "Monday, 6 January 2025",
+      "Tuesday, 7 January 2025",
+      "Wednesday, 8 January 2025",
+      "Thursday, 9 January 2025",
+      "Friday, 10 January 2025",
+      "Saturday, 11 January 2025",
+      "Sunday, 12 January 2025",
+      "Monday, 13 January 2025",
+      "Tuesday, 14 January 2025",
+      "Wednesday, 15 January 2025",
+      "Wednesday, 31 December 2025",
+"Thursday, 16 January 2025",
+"Friday, 17 January 2025",
+"Saturday, 18 January 2025",
+"Sunday, 19 January 2025",
+"Monday, 20 January 2025",
+"Tuesday, 21 January 2025",
+"Wednesday, 22 January 2025",
+"Thursday, 23 January 2025",
+"Friday, 24 January 2025",
+"Saturday, 25 January 2025",
+"Sunday, 26 January 2025",
+"Monday, 27 January 2025",
+"Tuesday, 28 January 2025",
+"Wednesday, 29 January 2025",
+"Thursday, 30 January 2025",
+"Saturday, 1 February 2025",
+"Sunday, 2 February 2025",
+"Saturday, 8 February 2025",
+"Sunday, 9 February 2025",
+"Saturday, 15 February 2025",
+"Sunday, 16 February 2025",
+"Saturday, 22 February 2025",
+"Sunday, 23 February 2025",
+"Saturday, 1 March 2025",
+"Sunday, 2 March 2025",
+"Saturday, 8 March 2025",
+"Sunday, 9 March 2025",
+"Saturday, 15 March 2025",
+"Sunday, 16 March 2025",
+"Saturday, 22 March 2025",
+"Sunday, 23 March 2025",
+"Saturday, 29 March 2025",
+"Sunday, 30 March 2025",
+"Saturday, 5 April 2025",
+"Sunday, 6 April 2025",
+"Saturday, 12 April 2025",
+"Sunday, 13 April 2025",
+"Monday, 14 April 2025",
+"Tuesday, 15 April 2025",
+"Wednesday, 16 April 2025",
+"Thursday, 17 April 2025",
+"Friday, 18 April 2025",
+"Saturday, 19 April 2025",
+"Sunday, 20 April 2025",
+"Monday, 21 April 2025",
+"Tuesday, 22 April 2025",
+"Wednesday, 23 April 2025",
+"Thursday, 24 April 2025",
+"Friday, 25 April 2025",
+"Saturday, 26 April 2025",
+"Sunday, 27 April 2025",
+"Monday, 28 April 2025",
+"Saturday, 3 May 2025",
+"Sunday, 4 May 2025",
+"Saturday, 10 May 2025",
+"Sunday, 11 May 2025",
+"Saturday, 17 May 2025",
+"Sunday, 18 May 2025",
+"Saturday, 24 May 2025",
+"Sunday, 25 May 2025",
+"Saturday, 31 May 2025",
+"Sunday, 1 June 2025",
+"Saturday, 7 June 2025",
+"Sunday, 8 June 2025",
+"Monday, 9 June 2025",
+"Saturday, 14 June 2025",
+"Sunday, 15 June 2025",
+"Saturday, 21 June 2025",
+"Sunday, 22 June 2025",
+"Saturday, 28 June 2025",
+"Sunday, 29 June 2025",
+"Saturday, 5 July 2025",
+"Sunday, 6 July 2025",
+"Monday, 7 July 2025",
+"Tuesday, 8 July 2025",
+"Wednesday, 9 July 2025",
+"Thursday, 10 July 2025",
+"Friday, 11 July 2025",
+"Saturday, 12 July 2025",
+"Sunday, 13 July 2025",
+"Monday, 14 July 2025",
+"Tuesday, 15 July 2025",
+"Wednesday, 16 July 2025",
+"Thursday, 17 July 2025",
+"Friday, 18 July 2025",
+"Saturday, 19 July 2025",
+"Sunday, 20 July 2025",
+"Monday, 21 July 2025",
+"Tuesday, 22 July 2025",
+"Wednesday, 23 July 2025",
+"Thursday, 24 July 2025",
+"Friday, 25 July 2025",
+"Saturday, 26 July 2025",
+"Sunday, 27 July 2025",
+"Saturday, 2 August 2025",
+"Sunday, 3 August 2025",
+"Saturday, 9 August 2025",
+"Sunday, 10 August 2025",
+"Saturday, 16 August 2025",
+"Sunday, 17 August 2025",
+"Saturday, 23 August 2025",
+"Sunday, 24 August 2025",
+"Saturday, 30 August 2025",
+"Sunday, 31 August 2025",
+"Saturday, 6 September 2025",
+"Sunday, 7 September 2025",
+"Saturday, 13 September 2025",
+"Sunday, 14 September 2025",
+"Saturday, 20 September 2025",
+"Sunday, 21 September 2025",
+"Saturday, 27 September 2025",
+"Sunday, 28 September 2025",
+"Monday, 29 September 2025",
+"Tuesday, 30 September 2025",
+"Wednesday, 1 October 2025",
+"Thursday, 2 October 2025",
+"Friday, 3 October 2025",
+"Saturday, 4 October 2025",
+"Sunday, 5 October 2025",
+"Monday, 6 October 2025",
+"Tuesday, 7 October 2025",
+"Wednesday, 8 October 2025",
+"Thursday, 9 October 2025",
+"Friday, 10 October 2025",
+"Saturday, 11 October 2025",
+"Sunday, 12 October 2025",
+"Monday, 13 October 2025",
+"Saturday, 18 October 2025",
+"Sunday, 19 October 2025",
+"Saturday, 25 October 2025",
+"Sunday, 26 October 2025",
+"Saturday, 1 November 2025",
+"Sunday, 2 November 2025",
+"Saturday, 8 November 2025",
+"Sunday, 9 November 2025",
+"Saturday, 15 November 2025",
+"Sunday, 16 November 2025",
+"Saturday, 22 November 2025",
+"Sunday, 23 November 2025",
+"Saturday, 29 November 2025",
+"Sunday, 30 November 2025",
+"Saturday, 6 December 2025",
+"Sunday, 7 December 2025",
+"Thursday, 11 December 2025",
+"Friday, 12 December 2025",
+"Saturday, 13 December 2025",
+"Sunday, 14 December 2025",
+"Monday, 15 December 2025",
+"Tuesday, 16 December 2025",
+"Wednesday, 17 December 2025",
+"Thursday, 18 December 2025",
+"Friday, 19 December 2025",
+"Saturday, 20 December 2025",
+"Sunday, 21 December 2025",
+"Monday, 22 December 2025",
+"Tuesday, 23 December 2025",
+"Wednesday, 24 December 2025",
+"Thursday, 25 December 2025",
+"Friday, 26 December 2025",
+"Saturday, 27 December 2025",
+"Sunday, 28 December 2025",
+"Monday, 29 December 2025",
+"Tuesday, 30 December 2025",
+"Wednesday, 31 December 2025"
+    ];
+
+    function calculateSchoolDays(startDateStr, endDateStr) {
+      const startDate = new Date(startDateStr);
+      const endDate = new Date(endDateStr);
+
+      if (endDate < startDate) {
+        alert("End date must be after start date.");
+        return 0;
+      }
+
+      let totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate total days
+      let schoolDays = totalDays;
+
+      // Subtract non-school days
+      for (const dayStr of nonSchoolDays) {
+        const nonSchoolDay = new Date(dayStr);
+        if (startDate <= nonSchoolDay && nonSchoolDay <= endDate) {
+          schoolDays--;
+        }
+      }
+
+      return schoolDays;
+    }
+
+    function calculate() {
+      const startDateInput = document.getElementById("startDate");
+      const endDateInput = document.getElementById("endDate");
+      const resultDiv = document.getElementById("result");
+
+      const startDate = startDateInput.value;
+      const endDate = endDateInput.value;
+
+      const schoolDays = calculateSchoolDays(startDate, endDate);
+
+      resultDiv.innerHTML = `Number of school days: ${schoolDays}`;
+    }
+  </script>
+</head>
+<body>
+  <h1>School Days Calculator</h1>
+
+  <label for="startDate">Start Date (YYYY-MM-DD):</label>
+  <input type="date" id="startDate"><br><br>
+
+  <label for="endDate">End Date (YYYY-MM-DD):</label>
+  <input type="date" id="endDate"><br><br>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <div id="result"></div>
+</body>
+</html>
