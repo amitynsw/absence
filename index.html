@@ -223,13 +223,38 @@
     }
   </script>
 </head>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Absence Days Calculator</title>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: 16px; /* Slightly larger for the heading */
+    }
+
+    label, input, button, div {
+      font-size: 12px;
+    }
+
+    button {
+      padding: 5px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
   <h1>Student Absence Days Calculator</h1>
 
-  <label for="startDate">Start Date (DD-MM-YYY):</label>
+  <label for="startDate">Start Date:</label>
   <input type="date" id="startDate"><br><br>
 
-  <label for="endDate">End Date (DD-MM-YYYY):</label>
+  <label for="endDate">End Date:</label>
   <input type="date" id="endDate"><br><br>
 
   <button onclick="calculate()">Calculate</button>
@@ -237,3 +262,4 @@
   <div id="result"></div>
 </body>
 </html>
+
